@@ -4,12 +4,70 @@
 <% @borrowings = current_user.borrowings.where(returned_at: nil) %> <!-- Only show active borrowings -->
 <% if @borrowings.present? %>
   <% @borrowings.each do |borrowing| %>
-    <div>
+    <div class="borrowing-item">
       <h3><%= borrowing.book.title %></h3>
       <p>Due Date: <%= borrowing.due_date %></p>
-      <%= button_to 'Return', return_book_path(borrowing.book), method: :post %>
+      <%= button_to 'Return', return_book_path(borrowing.book), method: :post, class: "btn btn-primary" %>
     </div>
   <% end %>
 <% else %>
-  <p>No borrowed books.</p>
+  <p class="no-borrowings">No borrowed books.</p>
 <% end %>
+
+<style>
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  h2 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .borrowing-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .borrowing-item h3 {
+    margin-top: 0;
+    color: #007bff;
+  }
+  .borrowing-item p {
+    font-size: 16px;
+    color: #555;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+    margin-top: 10px;
+  }
+  .btn:hover {
+    background-color: #0069d9;
+  }
+  .btn:active {
+    background-color: #0062cc;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+  .no-borrowings {
+    text-align: center;
+    color: #555;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+</style>
