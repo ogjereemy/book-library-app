@@ -1,19 +1,6 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 one:
-  user: one
   book: one
-  borrowed_at: <%= Date.today %>
-  due_date: <%= Date.tomorrow %>
-# column: value
-#
-two:
-  user: two
-  book: two
-  borrowed_at: <%= Date.today %>
-  due_date: <%= Date.tomorrow %>
-# column: value
+  user: one
+  borrowed_at: <%= Time.current %>
+  due_date: <%= 2.weeks.from_now %>
+  returned_at: nil

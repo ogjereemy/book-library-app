@@ -2,6 +2,7 @@ class BorrowingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_book, only: [:create]
 
+
   def index
     @borrowings = current_user.borrowings.where(returned_at: nil)
     respond_to do |format|
@@ -12,11 +13,13 @@ class BorrowingsController < ApplicationController
 
   def create
     @borrowing = Borrowing.new(borrowing_params)
+    Rails.logger.debug "Borrowing Params: #{borrowing_params.inspect}"
     @borrowing.user = current_user
     if @borrowing.save
       @book.update(available: false) # Mark the book as unavailable when borrowed
       redirect_to @borrowing, notice: 'Book was successfully borrowed.'
     else
+      puts @borrowing.errors.full_messages
       render :new
     end
   end
