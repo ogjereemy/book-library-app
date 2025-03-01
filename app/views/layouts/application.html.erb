@@ -7,6 +7,65 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 15px;
+      }
+      nav ul li a, nav ul li form {
+        text-decoration: none;
+        color: #fff;
+        padding: 8px 16px;
+        background-color: #444;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      nav ul li a:hover, nav ul li form:hover {
+        background-color: #555;
+      }
+      .notice, .alert {
+        margin: 20px auto;
+        padding: 10px;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .notice {
+        background-color: #dff0d8;
+        color: #3c763d;
+      }
+      .alert {
+        background-color: #f2dede;
+        color: #a94442;
+      }
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
 
   <body>
@@ -16,15 +75,23 @@
         <li><%= link_to 'Books', books_path %></li>
         <li><%= link_to 'My Profile', user_profile_path(current_user) if user_signed_in? %></li>
         <li><%= link_to 'Sign In', new_user_session_path unless user_signed_in? %></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete if user_signed_in? %></li>
+        <li>
+          <%= form_with url: destroy_user_session_path, method: :delete do %>
+            <%= submit_tag 'Sign Out' if user_signed_in? %>
+          <% end %> 
+        </li>
       </ul>
     </nav>
+
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

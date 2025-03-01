@@ -2,13 +2,57 @@
 <p>Author: <%= @book.author %></p>
 <p>ISBN: <%= @book.isbn %></p>
 <% if @book.available? %>
-  <%= button_to 'Borrow Book', borrow_book_path(@book), method: :post %>
+  <%= button_to 'Borrow Book', borrow_book_path(@book), method: :post, class: "btn btn-primary" %>
 <% else %>
-  <p>This book is currently unavailable.</p>
+  <p class="unavailable">This book is currently unavailable.</p>
 <% end %>
-<%
-=begin%>
- <%= link_to 'Return Book', return_book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } %> 
-<%
-=end%>
-<%= link_to 'Back to Books', books_path %>
+<%= link_to 'Back to Books', books_path, class: "btn btn-secondary" %>
+
+<style>
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+  }
+  .unavailable {
+    color: #dc3545;
+    text-align: center;
+    font-weight: bold;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+    margin: 10px auto;
+    display: block;
+    width: fit-content;
+  }
+  .btn:hover {
+    background-color: #0069d9;
+  }
+  .btn:active {
+    background-color: #0062cc;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+  .btn-secondary {
+    background-color: #6c757d;
+  }
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+</style>

@@ -1,31 +1,101 @@
 <h1>Books List</h1>
 
 <%= form_with model: @book, local: true do |form| %>
-  <div>
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :author %>
-    <%= form.text_field :author %>
+    <%= form.text_field :author, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :isbn %>
-    <%= form.text_field :isbn %>
+    <%= form.text_field :isbn, class: "form-control" %>
   </div>
 
-  <%= form.submit "Add Book" %>
+  <%= form.submit "Add Book", class: "btn btn-primary" %>
 <% end %>
 
 <h1>Available Books</h1>
-<ul>
+<ul class="book-list">
   <% @books.each do |book| %>
-    <li>
-      <%= link_to book.title, book_path(book) %> - <%= book.available? ? "Available" : "Borrowed" %>
+    <li class="book-item">
+      <%= link_to book.title, book_path(book), class: "book-link" %> - 
+      <span class="<%= book.available? ? 'available' : 'borrowed' %>">
+        <%= book.available? ? "Available" : "Borrowed" %>
+      </span>
     </li>
   <% end %>
 </ul>
+
+<style>
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+  }
+  .btn:hover {
+    background-color: #0069d9;
+  }
+  .btn:active {
+    background-color: #0062cc;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+  .book-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  .book-item {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .book-link {
+    text-decoration: none;
+    color: #007bff;
+  }
+  .book-link:hover {
+    text-decoration: underline;
+  }
+  .available {
+    color: #28a745;
+  }
+  .borrowed {
+    color: #dc3545;
+  }
+</style>
 
 
