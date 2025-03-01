@@ -9,6 +9,13 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+/*
+ *= require_self
+ *= require_tree .
+ *= require custom_styles
+ *= require devise
+ */
+
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
