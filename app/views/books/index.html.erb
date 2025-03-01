@@ -1,6 +1,17 @@
 <h1>Books List</h1>
 
 <%= form_with model: @book, local: true do |form| %>
+  <% if @book.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, class: "form-control" %>
@@ -32,6 +43,7 @@
 </ul>
 
 <style>
+  /* Style updates to enhance the UI */
   h1 {
     text-align: center;
     color: #333;
@@ -63,11 +75,6 @@
   .btn:hover {
     background-color: #0069d9;
   }
-  .btn:active {
-    background-color: #0062cc;
-    box-shadow: 0 2px #666;
-    transform: translateY(2px);
-  }
   .book-list {
     list-style: none;
     padding: 0;
@@ -97,5 +104,3 @@
     color: #dc3545;
   }
 </style>
-
-
