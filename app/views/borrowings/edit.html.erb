@@ -1,0 +1,7 @@
+<h1>Return Book</h1>
+
+<%= form_with(model: @borrowing, url: return_borrowing_path(@borrowing), method: :patch, local: true) do |form| %>
+  <div class="actions">
+    <%= form.submit 'Return' %>
+  </div>
+<% end %>

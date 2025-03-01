@@ -1,0 +1,15 @@
+<h1><%= current_user.name %>'s Profile</h1>
+
+<h2>Borrowed Books</h2>
+<% @borrowings = current_user.borrowings.where(returned_at: nil) %> <!-- Only show active borrowings -->
+<% if @borrowings.present? %>
+  <% @borrowings.each do |borrowing| %>
+    <div>
+      <h3><%= borrowing.book.title %></h3>
+      <p>Due Date: <%= borrowing.due_date %></p>
+      <%= button_to 'Return', return_book_path(borrowing.book), method: :post %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No borrowed books.</p>
+<% end %>

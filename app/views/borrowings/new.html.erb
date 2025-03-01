@@ -1,0 +1,12 @@
+<h1>Borrow Book</h1>
+
+<%= form_with(model: @borrowing, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :book_id %>
+    <%= form.collection_select :book_id, Book.all, :id, :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Borrow' %>
+  </div>
+<% end %>

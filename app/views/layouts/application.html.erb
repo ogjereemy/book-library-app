@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Book Library App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Books', books_path %></li>
+        <li><%= link_to 'My Profile', user_profile_path(current_user) if user_signed_in? %></li>
+        <li><%= link_to 'Sign In', new_user_session_path unless user_signed_in? %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete if user_signed_in? %></li>
+      </ul>
+    </nav>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

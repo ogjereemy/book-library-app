@@ -1,0 +1,31 @@
+<h1>Books List</h1>
+
+<%= form_with model: @book, local: true do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div>
+    <%= form.label :isbn %>
+    <%= form.text_field :isbn %>
+  </div>
+
+  <%= form.submit "Add Book" %>
+<% end %>
+
+<h1>Available Books</h1>
+<ul>
+  <% @books.each do |book| %>
+    <li>
+      <%= link_to book.title, book_path(book) %> - <%= book.available? ? "Available" : "Borrowed" %>
+    </li>
+  <% end %>
+</ul>
+
+

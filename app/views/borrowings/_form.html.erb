@@ -1,0 +1,22 @@
+<%= form_with(model: borrowing, local: true) do |form| %>
+  <% if borrowing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(borrowing.errors.count, "error") %> prohibited this borrowing from being saved:</h2>
+
+      <ul>
+        <% borrowing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :borrowing_book_id %>
+    <%= form.number_field :borrowing_book_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
