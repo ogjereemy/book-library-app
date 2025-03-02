@@ -24,8 +24,8 @@ class BorrowingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return book" do
-    patch borrowing_path(@borrowing), params: { borrowing: { returned_at: Time.current } }
-    assert_redirected_to user_path(users(:one))
+    delete return_book_borrowing_url(@borrowing)
+    assert_redirected_to user_profile_path(@borrowing.user)
   end
 
   test "should destroy borrowing" do

@@ -3,7 +3,7 @@
   <% @borrowings.each do |borrowing| %>
     <li>
       <%= borrowing.book.title %> - Due on <%= borrowing.due_date %>
-      <%= button_to 'Return Book', return_book_path(borrowing.book), method: :patch %>
+      <%= button_to 'Return Book', return_book_borrowing_path(borrowing), method: :delete %>
     </li>
   <% end %>
 </ul>

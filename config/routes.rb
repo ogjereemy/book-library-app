@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   resources :borrowings, only: [:index, :create, :update, :destroy] do
     member do
-      delete 'return_book'
+      delete 'return_book', to: 'borrowings#return_book'
       get 'return_book'
     end
   end
