@@ -51,7 +51,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-          cache-version: ${{ github.sha }}-${{ github.run_id }}
+          cache-version: ${{ github.sha }}
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
@@ -76,7 +76,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test:prepare && bin/rails test test:system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
