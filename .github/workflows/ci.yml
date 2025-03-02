@@ -71,7 +71,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-          cache-version: ${{ github.run_id }}-${{ github.sha }}
+          cache-version: ${{ github.run_id }}-${{ github.sha }}-unique-key
 
       - name: Run tests
         env:
