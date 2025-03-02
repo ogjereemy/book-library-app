@@ -4,13 +4,13 @@ class AddDeviseToUsers < ActiveRecord::Migration[8.0]
   def up
     change_table :users do |t|
       ## Database authenticatable
-      
+
       ## Recoverable
-    
-      
+
+
 
       ## Rememberable
-      
+
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

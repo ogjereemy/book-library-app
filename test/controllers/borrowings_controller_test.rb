@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class BorrowingsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -29,7 +29,7 @@ class BorrowingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy borrowing" do
-    assert_difference('Borrowing.count', -1) do
+    assert_difference("Borrowing.count", -1) do
       delete borrowing_path(@borrowing)
     end
     assert_redirected_to borrowings_path

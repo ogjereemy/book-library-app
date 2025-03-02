@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
-require 'bcrypt'  # Ensure bcrypt is loaded
+require "bcrypt"  # Ensure bcrypt is loaded
 
 module ActiveSupport
   class TestCase
@@ -25,5 +25,4 @@ module ActiveSupport
   class ActiveSupport::TestCase
     include Devise::Test::IntegrationHelpers
   end
-  
 end

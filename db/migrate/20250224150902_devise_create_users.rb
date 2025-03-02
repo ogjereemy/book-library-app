@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.0]
 
 
       ## Rememberable
-    
+
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

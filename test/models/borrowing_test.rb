@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class BorrowingTest < ActiveSupport::TestCase
   def setup
@@ -16,7 +16,7 @@ class BorrowingTest < ActiveSupport::TestCase
   end
 
   test "should destroy borrowing" do
-    assert_difference('Borrowing.count', -1) do
+    assert_difference("Borrowing.count", -1) do
       @borrowing.destroy
     end
   end

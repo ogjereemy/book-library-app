@@ -1,6 +1,6 @@
 class BorrowingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:create]
+  before_action :set_book, only: [ :create ]
 
 
   def index
@@ -17,7 +17,7 @@ class BorrowingsController < ApplicationController
     @borrowing.user = current_user
     if @borrowing.save
       @book.update(available: false) # Mark the book as unavailable when borrowed
-      redirect_to @borrowing, notice: 'Book was successfully borrowed.'
+      redirect_to @borrowing, notice: "Book was successfully borrowed."
     else
       puts @borrowing.errors.full_messages
       render :new
@@ -28,7 +28,7 @@ class BorrowingsController < ApplicationController
     @borrowing = current_user.borrowings.find(params[:id])
     if @borrowing.update(returned_at: Time.current)
       @borrowing.book.update(available: true) # Update book status to available when returned
-      redirect_to user_path(current_user), notice: 'Book was successfully returned.'
+      redirect_to user_path(current_user), notice: "Book was successfully returned."
     else
       render :edit
     end
@@ -37,14 +37,14 @@ class BorrowingsController < ApplicationController
   def return_book
     @borrowing = Borrowing.find(params[:id])
     @borrowing.update(returned_at: Time.current) # Mark as returned
-    redirect_to user_profile_path(current_user), notice: 'Book has been returned.'
+    redirect_to user_profile_path(current_user), notice: "Book has been returned."
   end
 
   def destroy
     @borrowing = Borrowing.find(params[:id])
     @borrowing.book.update(available: true) # Mark the book as available before destroying the borrowing record
     @borrowing.destroy
-    redirect_to borrowings_url, notice: 'Borrowing was successfully destroyed.'
+    redirect_to borrowings_url, notice: "Borrowing was successfully destroyed."
   end
 
   private
