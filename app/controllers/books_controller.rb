@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:borrow, :return_book]
-  before_action :set_book, only: [:show, :borrow, :return_book]
+  before_action :authenticate_user!, only: [ :borrow, :return_book ]
+  before_action :set_book, only: [ :show, :borrow, :return_book ]
 
   def index
     @books = Book.includes(:borrowings).all
@@ -31,18 +31,18 @@ class BooksController < ApplicationController
     else
       redirect_to user_profile_path(current_user), notice: "Error returning the book."
     end
-  end 
+  end
 
   def create
     @book = Book.new(book_params)
     if @book.save
       # Load the list of books to prevent the nil error when rendering the view
       @books = Book.all
-      render :index, notice: 'Book was successfully created.'
+      render :index, notice: "Book was successfully created."
     else
       # Load the list of books again if save fails, to prevent nil error
       @books = Book.all
-      render :index, alert: 'Failed to create book.'
+      render :index, alert: "Failed to create book."
     end
   end
 
