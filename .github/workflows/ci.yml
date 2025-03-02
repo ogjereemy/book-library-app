@@ -51,7 +51,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-          cache-version: ${{ github.sha }}
+          cache-version: ${{ github.sha }}-${{ github.run_id }}
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
