@@ -19,7 +19,6 @@ This is a simple **Book Lending Library** application built using **Ruby on Rail
 - **Ruby on Rails 8**: The backend framework.
 - **Devise**: For user authentication.
 - **PostgreSQL**: Database for storing book and user information.
-- **RSpec**: For testing the application.
 - **Propshaft**: Asset pipeline for Rails.
 - **Tailwind CSS**: For styling the frontend.
   
