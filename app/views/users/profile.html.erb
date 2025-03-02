@@ -2,16 +2,16 @@
 
 <h2>Borrowed Books</h2>
 <% @borrowings = current_user.borrowings.where(returned_at: nil) %> <!-- Only show active borrowings -->
-<% if @borrowings.present? %>
+<% if @borrowings.any? %>
   <% @borrowings.each do |borrowing| %>
-    <div class="borrowing-item">
+    <div class="borrowing">
       <h3><%= borrowing.book.title %></h3>
       <p>Due Date: <%= borrowing.due_date %></p>
-      <%= button_to 'Return', return_book_path(borrowing.book), method: :post, class: "btn btn-primary" %>
+      <%= link_to 'Return', return_book_borrowing_path(borrowing), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to return this book?" } %>
     </div>
   <% end %>
 <% else %>
-  <p class="no-borrowings">No borrowed books.</p>
+  <p>No borrowings found.</p>
 <% end %>
 
 <style>

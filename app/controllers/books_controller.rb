@@ -22,13 +22,14 @@ class BooksController < ApplicationController
   end
 
   def return_book
+    @book = Book.find(params[:id])
     @borrowing = current_user.borrowings.find_by(book: @book, returned_at: nil) # Find active borrowings
     if @borrowing
       @borrowing.update(returned_at: Time.current) # Mark as returned
       @book.update(available: true) # Mark the book as available
-      redirect_to user_profile_path, notice: "You have returned the book."
+      redirect_to user_profile_path(current_user), notice: "You have returned the book."
     else
-      redirect_to user_profile_path, alert: "Error returning the book."
+      redirect_to user_profile_path(current_user), notice: "Error returning the book."
     end
   end 
 

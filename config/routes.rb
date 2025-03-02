@@ -6,16 +6,18 @@ Rails.application.routes.draw do
   resources :books do
     member do
       post 'borrow'
-      delete 'return'
-      post 'return'
-      delete 'return'
+      delete 'return_book'
     end
   end
   
-  resources :borrowings, only: [:index, :create, :update, :destroy]
+  resources :borrowings, only: [:index, :create, :update, :destroy] do
+    member do
+      delete 'return_book'
+      get 'return_book'
+    end
+  end
   
   get 'user_profile/:user_id', to: 'users#profile', as: 'user_profile'
-  
   get 'user/:user_id/borrowings', to: 'borrowings#index', as: 'user_borrowings'
   
   root 'books#index'

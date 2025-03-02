@@ -34,6 +34,12 @@ class BorrowingsController < ApplicationController
     end
   end
 
+  def return_book
+    @borrowing = Borrowing.find(params[:id])
+    @borrowing.update(returned_at: Time.current) # Mark as returned
+    redirect_to user_profile_path(current_user), notice: 'Book has been returned.'
+  end
+
   def destroy
     @borrowing = Borrowing.find(params[:id])
     @borrowing.book.update(available: true) # Mark the book as available before destroying the borrowing record

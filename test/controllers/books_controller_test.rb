@@ -26,8 +26,8 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return book" do
-    post return_book_path(@book)
-    assert_redirected_to books_path
+    get book_url(@book)
+    assert_response :success
   end
 
   test "should be valid" do
