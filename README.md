@@ -1,5 +1,5 @@
 # Book Lending Library Application
-By Ogola Jeremy 
+## By Ogola Jeremy 
 Date: 2nd March 2025
 
 This is a simple **Book Lending Library** application built using **Ruby on Rails 8**. It allows users to register, log in, and borrow books from the library. The application tracks borrowed books, returns, and provides features for listing available books. It includes user authentication using **Devise** and a borrowing system associating users and books with due dates for borrowed books.
