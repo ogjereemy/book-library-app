@@ -33,6 +33,7 @@ books = [
   { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', isbn: '9780743273567' },
   { title: 'Brave New World', author: 'Aldous Huxley', isbn: '9780060850526' },
   { title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', isbn: '9780544003417' }
+
 ]
 
 # Seed the books
